@@ -115,3 +115,10 @@ ex) 예를 들어, 사람이라는 Class가 있고 그 안에 배고픔이라는
     갑자기 밥을 먹지도 않았는데 배부른 경우는 현실에 없기 때문이다. 현실을 추상화한 객체지향의 특성에 어긋난다.   
     즉, 올바르게 구현하기 위해서는 배고픔이라는 상태는 Private으로 직접 접근하여 값을 바꿀 수 없고, 클래스 내의 Public 메소드인 eat을 통해서 이 값을 증가시키는 것이 올바르다.
     
+# 4. Lombok Annotation이 제대로 작동되지 않을 때
+- @Getter 등의 어노테이션을 설정했음에도 get 메소드 실행 시 cannot find symbol이 뜨는 경우
+- Build.gradle에 다음 의존성을 추가한다.
+```
+annotationProcessor('org.projectlombok:lombok')
+
+```
