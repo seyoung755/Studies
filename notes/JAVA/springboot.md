@@ -122,3 +122,7 @@ ex) 예를 들어, 사람이라는 Class가 있고 그 안에 배고픔이라는
 annotationProcessor('org.projectlombok:lombok')
 
 ```
+
+# 5. Request를 받을 때 json 데이터를 받는 과정
+- @Requestbody 어노테이션을 통해 body data(JSON)임을 알려주고 Model 객체를 인자로 받는다.
+- 그러면 Springboot의 MessageConverter를 통해 Model 내의 인자로 매핑해서 받을 수 있다. 
