@@ -150,3 +150,19 @@ annotationProcessor('org.projectlombok:lombok')
 - 이 저장소로부터 file을 받기 위해서는 pom.xml(Gradle의 경우에는 build.gradle)에 필요한 file을 기록해둔다. 
 - 그럼 Maven(혹은 Gradle 등의 프로젝트 관리도구)가 이 파일을 읽어 자동으로 다운받고(.m2의 repository라는 경로에) 빌드해준다.
 - 배포 시에도 pom.xml 파일을 포함하고 Maven을 설치하기만 하면 빌드할 때마다 자동으로 라이브러리를 관리해준다.  
+
+# 7. Lombok 사용법
+1. Getter/Setter 사용 시
+    - @Getter, @Setter로 해당 메소드를 만들 수 있고, @Data를 사용하면 두 메소드를 모두 만들어준다.
+
+2. Constructor 
+    - @AllArgsConstructor 를 사용하면 모든 필드에 대해 생성자를 생성한다.
+    - @RequiredArgsConstructor를 사용하면 final이 붙은 필드에 대해서만 생성자를 생성한다.
+    - @NoArgsConstructor 는 빈 생성자를 생성한다.
+
+3. Builder
+    - 생성자에 @Builder라는 어노테이션을 추가하면 빌더 패턴을 구현할 수 있다.
+    - 언제 필요한가?
+        ex)객체를 생성할 때, 어느 값은 제외하고 넣고 싶은 경우가 있다. 그런 경우가 생길 때마다 해당 인자를 제외한 생성자가 만들어져 있어야 한다. 
+           이런 경우, Builder 패턴을 이용하면 순서를 기억할 필요도 없다.
+
