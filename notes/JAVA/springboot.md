@@ -188,3 +188,38 @@ annotationProcessor('org.projectlombok:lombok')
         - row level locking을 지원하여 대용량 데이터의 CRUD에 유리하다.
         - 단, 풀텍스트 인덱스를 지원하지 않는다. 
 - 추가로 두 종류의 스토리지 엔진을 같이 사용할 경우, Join 시 주의가 필요하다 (왜 그럴까?)
+
+# 10. Table 간 연관관계의 주인
+- 연관관계의 주인이란? FK를 가진 오브젝트 
+예시로 게시글 상세보기 페이지를 생각해보자.   
+해당 페이지의 정보를 테이블 혹은 Class 단위로 보면 (게시글 작성자 - User class/table), (제목, 내용 - Board class/table), (댓글 - Reply class/table)이 있다.   
+만약, JPA가 아닌 MyBatis 등을 썼다면 위 세가지 테이블을 조인하여 SELECT한 다음 가져올 것이다.    
+그러나 ORM 방식을 쓰면, Board table만 SELECT하면 된다. 그것을 구현하려면 아래의 과정을 따른다.   
+
+ex) 자바 프로그램에서 DB에 SELECT * FROM Board where Id = 1; 이라는 쿼리를 날리고 싶다.
+JPA를 사용하면 JPA를 통해 쿼리를 날리게 되는데, JPA는 요청을 받으면 Board(id=1) 이 필요하다는 것을 인식한다.
+1. 그럼 JPA는 위와 같은 쿼리를 날리는 것이 아니라, 먼저 Board가 들고있는 User 객체 때문에 User 정보를 Join하는 쿼리를 날린다.
+2. JPA는 이제 Board와 User를 join한 테이블을 가지게 된다.
+3. 그러나, Reply Table 정보는 가져올 수 없다. 그러므로 Board에 추가적으로 Reply object를 포함시킨다.
+4. 단, 이 때 게시글 당 User 정보는 하나지만 Reply 정보는 여러 개일 수 있으므로 List 형으로 Object를 받는다. 
+5. 그리고 Reply 정보는 Foreign key를 설정할 필요가 없다. 왜냐면 여러개의 댓글이 달리면 ReplyID 값이 여러개가 되기 때문에 1정규화(원자성)이 깨진다. 
+6. 여기서, reply의 FK는 reply table에 존재해야 하므로, Mappedby를 통해 FK column이 만들어지는 것을 방지한다. 
+7. 그럼 Board table을 SELECT 하는 경우에 user는 한 건, reply는 여러 건이 존재할 수 있다. 
+8. 이런 경우에 연관관계가 ManyToOne인 user는 기본 전략이 FetchType.EAGER로 Board table을 SELECT 할 시 무조건 가져온다. 
+9. 그러나 reply는 여러 건이므로 필요하지 않으면 가져오지 않는 FetchType.LAZY가 기본전략으로 설정되어 있다. 즉, 무조건 가져오게 하려면 설정을 바꿔줘야 한다. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
