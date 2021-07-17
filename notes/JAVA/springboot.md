@@ -175,7 +175,7 @@ annotationProcessor('org.projectlombok:lombok')
   그러므로 동적인 파일을 리턴하기 위해서는 yaml 설정을 통해 view의 경로를 옮겨줄 필요가 있다.   
   그렇게 되면 jsp파일을 Tomcat server가 컴파일하여 브라우저에게 전달하여 브라우저가 인식할 수 있게 된다.
   
-# 9. MyISAM vs InnoDB
+# 9. MyISAM vs InnoDB ( 출처 : https://rebeccajo.tistory.com/14)
 - 결론부터, 둘의 결정적 차이는 트랜잭션 처리의 유무와 Readonly 작업이 많냐에 따라 각각의 장점이 드러난다.
 - InnoDB는 트랜잭션 처리가 필요하고 대용량의 데이터를 다룰 때 유리하다.
 - MyISAM은 Readonly 작업이 많은 (즉, SELECT를 많이 하는) DB에 유리하다.
