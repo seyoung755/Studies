@@ -166,3 +166,12 @@ annotationProcessor('org.projectlombok:lombok')
         ex)객체를 생성할 때, 어느 값은 제외하고 넣고 싶은 경우가 있다. 그런 경우가 생길 때마다 해당 인자를 제외한 생성자가 만들어져 있어야 한다. 
            이런 경우, Builder 패턴을 이용하면 순서를 기억할 필요도 없다.
 
+# 8. Yaml 설정
+1. 기존 web.xml, root-context.xml(싱글톤으로 관리), servlet-context.xml(new로 생성하여 사용하는 것들)의 합본
+2. 프로젝트에 진입하기 전에 한번 읽고 설정을 한 뒤 프로젝트가 실행됨
+
+- mvc view 설정
+  : 파일 return 시 기본 경로인 static 경로에서 리턴할 때는 정적인 파일만 브라우저가 인식할 수 있다.   
+  그러므로 동적인 파일을 리턴하기 위해서는 yaml 설정을 통해 view의 경로를 옮겨줄 필요가 있다.   
+  그렇게 되면 jsp파일을 Tomcat server가 컴파일하여 브라우저에게 전달하여 브라우저가 인식할 수 있게 된다.
+  
