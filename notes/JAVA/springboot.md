@@ -175,3 +175,16 @@ annotationProcessor('org.projectlombok:lombok')
   그러므로 동적인 파일을 리턴하기 위해서는 yaml 설정을 통해 view의 경로를 옮겨줄 필요가 있다.   
   그렇게 되면 jsp파일을 Tomcat server가 컴파일하여 브라우저에게 전달하여 브라우저가 인식할 수 있게 된다.
   
+# 9. MyISAM vs InnoDB
+- 결론부터, 둘의 결정적 차이는 트랜잭션 처리의 유무와 Readonly 작업이 많냐에 따라 각각의 장점이 드러난다.
+- InnoDB는 트랜잭션 처리가 필요하고 대용량의 데이터를 다룰 때 유리하다.
+- MyISAM은 Readonly 작업이 많은 (즉, SELECT를 많이 하는) DB에 유리하다.
+    1. MyISAM
+        - 항상 테이블에 ROW COUNT를 가지고 있어 SELECT count(*), SELECT 명령이 빠르다.
+        - 풀텍스트 인덱스를 지원하여 검색 엔진과 유사한 방법으로 자연어 검색을 지원한다. 즉, 조회에 강력한 장점을 가지고 있다. 
+        - 단, row level locking (더 알아보자)을 지원하지 않아 CRUD 작업 시 전체 Table에 lock이 걸린다. 즉, Transaction 시 대용량 데이터를 다루면 속도가 급격히 느려진다.
+        
+    2. InnoDB
+        - row level locking을 지원하여 대용량 데이터의 CRUD에 유리하다.
+        - 단, 풀텍스트 인덱스를 지원하지 않는다. 
+- 추가로 두 종류의 스토리지 엔진을 같이 사용할 경우, Join 시 주의가 필요하다 (왜 그럴까?)
