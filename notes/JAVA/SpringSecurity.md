@@ -30,3 +30,4 @@
 - 위와 같은 과정으로 세션에 값이 저장되므로, 세션 값을 바꿀 때 임의로 Authentication 객체를 만든다.
 - 이 때, 필요한 Token도 직접 만든다. 
 - 그 다음 Securitycontext에 접근하여 해당 Authentication 객체로 수정한다. 
+- 마지막으로 session에 SecurityContext를 저장하면 완료된다.
