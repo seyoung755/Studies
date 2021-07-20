@@ -19,3 +19,14 @@
 - 막는 방법 첫 번째는 GET 방식을 이용하지 않고 POST 방식을 이용해야 한다.
 - 또는 Referrer 검증 -> 같은 도메인 상에서 요청이 들어오지 않는다면 차단하도록 하는 것이다.
 - CSRF token을 이용하면 header에 token이 없는 요청에 대해서 모두 방어가 가능하다. 
+
+# Session 값 변경하기
+1. 사용자가 로그인 요청을 하면 Authentication filter를 거친다.
+2. request body의 username과 password로 UsernamePasswordAuthenticationToken을 만든다.
+3. 그 Token을 UserDetailService 를 통해서 DB에 해당 정보의 유저가 있는지 확인한 후 있으면 Authentication이라는 객체를 만든다. 
+4. 우리가 만든 loadUserByUsername은 username만 가지고 DB에 조회하고 비밀번호는 따로 스프링이 Encoding한 후 DB와 비교해준다.
+5. 그래서 User 정보를 세션의 Security context에 저장한다. 
+
+- 위와 같은 과정으로 세션에 값이 저장되므로, 세션 값을 바꿀 때 임의로 Authentication 객체를 만든다.
+- 이 때, 필요한 Token도 직접 만든다. 
+- 그 다음 Securitycontext에 접근하여 해당 Authentication 객체로 수정한다. 
