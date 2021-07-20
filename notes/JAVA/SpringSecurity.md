@@ -49,3 +49,4 @@
 : Open Auth , 인증 처리를 대신 해준다. 
 
 - 과정
+![KakaoTalk_Photo_2021-07-20-22-38-45](https://user-images.githubusercontent.com/54302155/126333946-ace416e6-2bd0-4c8c-b700-dc90ef8e8731.jpeg)
