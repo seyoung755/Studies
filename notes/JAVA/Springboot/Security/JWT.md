@@ -1,3 +1,4 @@
+
 ## JWT를 배우기 전 배경 지식
 ### 1. 세션의 동작방식
 ![JWT-1](https://user-images.githubusercontent.com/54302155/128668676-a7c2a011-3541-497f-a3e9-14ce7e5861ee.jpg)
@@ -16,3 +17,4 @@
 ## JWT 소개 
 - 참고 : [JWT 공식 사이트](https://jwt.io/)
 - JWT의 구조
+![JWT-8](https://user-images.githubusercontent.com/54302155/128673562-dddb5269-5b17-4aa9-b3a3-90fb833bf6fd.jpg)
